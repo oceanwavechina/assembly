@@ -1,6 +1,7 @@
 ; 这段代码是演示loop循环和bx的联合使用
 ;  bx寄存器是偏移地址寄存器，为啥英文名字叫base
 ; 用 debug中的d 命令查看内存数据 [d ffff:000]是不是被读取
+; dos内存中一般 0:200 - 0:300 这段内存是安全的，也就是不会被系统使用
 
 assume cs:loopmem
 
@@ -20,7 +21,7 @@ s:  mov al, [bx]    ; bx 存的是内存地址的偏移，其对应的默认的�
     
     mov ah, 0       ; 清空ah,因为我们只需要计算低8bit, 因为之前ah是用数据的
     add dx, ax      ; 计算结果放到dx中
-    inc bx          ; 指向下一个单元
+    inc bx          ; 指向下一个单元, 加1，因为我们使用的1byte，也即是8bit
     loop s
 
     mov ax, 4c00h
