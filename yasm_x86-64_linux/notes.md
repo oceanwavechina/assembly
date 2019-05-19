@@ -21,6 +21,10 @@
     2. 创建list文件, 用来debug
     3. 创建obj文件(这就是最终的文件)
 
+* 使用 debugger command file 收集调试信息
+    在gdb启动后，执行 source debugger_input.txt </br>
+    或是</br>
+    gdb < debugger_input.txt a.out
 
 
 ## 其他

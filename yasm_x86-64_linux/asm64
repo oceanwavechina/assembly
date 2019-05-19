@@ -1,0 +1,16 @@
+#! /bin/bash
+# assemble && link
+
+if [ -z $1 ]; then
+	echo "Usage: sh asm64.sh <asm-main-file> (without extension)"
+	exit
+fi
+
+if [ ! -e "$1.asm" ]; then
+	echo "Error, $1.asm not found."
+	exit
+fi	
+
+yasm -Worphan-labels -g dwarf2 -f elf64 $1.asm -l $1.lst
+
+ld -g -o $1 $1.o
